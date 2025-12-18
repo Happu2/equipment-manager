@@ -20,9 +20,33 @@ function App() {
       setEquipment(response.data)
       setLoading(false)
     } catch (err) {
-      setError('Error fetching data')
+      // Fallback to static data for demo on GitHub Pages
+      setEquipment([
+        {
+          id: 1,
+          name: 'Laptop',
+          type: 'Computer',
+          status: 'Available',
+          last_cleaned_date: '2024-12-01'
+        },
+        {
+          id: 2,
+          name: 'Projector',
+          type: 'Display',
+          status: 'In Use',
+          last_cleaned_date: '2024-11-15'
+        },
+        {
+          id: 3,
+          name: 'Whiteboard',
+          type: 'Stationery',
+          status: 'Available',
+          last_cleaned_date: '2024-12-10'
+        }
+      ])
+      setError(null) // Clear error since we have fallback data
       setLoading(false)
-      console.error(err)
+      console.error('Using demo data:', err.message)
     }
   }
 
@@ -31,6 +55,7 @@ function App() {
       await axios.post('http://localhost:3000/api/equipment', formData)
       fetchEquipment()
     } catch (err) {
+      alert('Demo mode: Cannot add equipment. This feature requires a backend server.')
       console.error('Error adding equipment', err)
     }
   }
@@ -41,6 +66,7 @@ function App() {
           setEditingItem(null);
           fetchEquipment();
       } catch (err) {
+          alert('Demo mode: Cannot update equipment. This feature requires a backend server.')
           console.error('Error updating equipment', err);
       }
   }
@@ -51,6 +77,7 @@ function App() {
       await axios.delete(`http://localhost:3000/api/equipment/${id}`)
       fetchEquipment()
     } catch (err) {
+      alert('Demo mode: Cannot delete equipment. This feature requires a backend server.')
       console.error('Error deleting equipment', err)
     }
   }
