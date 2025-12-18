@@ -38,6 +38,16 @@ input {
   max-width: 800px;
 }
 
+.search-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
 .equipment-table {
   width: 100%;
   border-collapse: collapse;
@@ -54,6 +64,72 @@ input {
 .equipment-table th {
   background-color: #f4f4f4;
   color: #333;
+}
+
+.equipment-table th:hover {
+  background-color: #e0e0e0;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .equipment-table {
+    font-size: 0.9rem;
+  }
+
+  .equipment-table th,
+  .equipment-table td {
+    padding: 0.5rem;
+  }
+
+  .equipment-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .equipment-table thead,
+  .equipment-table tbody,
+  .equipment-table th,
+  .equipment-table td,
+  .equipment-table tr {
+    display: block;
+  }
+
+  .equipment-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .equipment-table tr {
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+  }
+
+  .equipment-table td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+  }
+
+  .equipment-table td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+
+  .equipment-table td:nth-of-type(1):before { content: "Name:"; }
+  .equipment-table td:nth-of-type(2):before { content: "Type:"; }
+  .equipment-table td:nth-of-type(3):before { content: "Status:"; }
+  .equipment-table td:nth-of-type(4):before { content: "Last Cleaned:"; }
+  .equipment-table td:nth-of-type(5):before { content: "Actions:"; }
 }
 
 .delete-btn {
